@@ -1,7 +1,32 @@
-import React from 'react';
+import React, { useReducer, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import reducer from '../reducers'
+
 const App = () => {
+  const initialState = [];
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+
+  const addEvent = (e) => {
+    e.preventDefault();
+    console.log("addevent" + title + body);
+    // dispatchに入れるもの：
+    // dispatch(action)
+    // action = { type:'CREATE_EVENT', eventの中身(title: title, body: body)をformから取得, usestateを使う}
+    dispatch({
+      type: 'CREATE_EVENT',
+      title,
+      body,
+    })
+
+    console.log({state})
+    setTitle('')
+    setBody('')
+    
+  }
+
   return (
     <div className="container-fluid">
       <h1>Hello</h1>
@@ -9,13 +34,13 @@ const App = () => {
       <form>
         <div className="form-group">
           <label htmlFor="formEventTitle">Title</label>
-          <input type="text" className="form-control" id="formEventTitle" placeholder="Title" />
+          <input type="text" className="form-control" id="formEventTitle" placeholder="Title" value={title} onChange={e => setTitle(e.target.value)} />
         </div>
         <div className="form-group">
           <label htmlFor="formEventBody">Body</label>
-          <textarea className="form-control" id="formEventBody" placeholder="Title" />
+          <textarea className="form-control" id="formEventBody" placeholder="Body" value={body} onChange={e => setBody(e.target.value)} />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary" onClick={addEvent}>Submit</button>
         <button type="submit" className="btn btn-danger">Delete All Events</button>
       </form>
 
