@@ -8,7 +8,7 @@ const App = (props) => {
   // state.price => priceとするには？
   const {name, price} = state
 
-  // useEffect(関数,
+  // useEffect(関数,　[])
   // useEffect(() => {f}, )
   // componentDidUpdateと同じようなもの
   useEffect(() => {
@@ -20,6 +20,11 @@ const App = (props) => {
     console.log('componentDidMount')
   }, [])
 
+  // nameが書き換えられたときに追加
+  // componentDidMount -> 第2引数に[name]を追加
+  useEffect(() => {
+    console.log('call back for only adding name')
+  }, [name])
 
   const renderPeriod = () => {
     console.log('render period')
