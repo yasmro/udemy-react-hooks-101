@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const App = (props) => {
   const [state, setState] = useState(props);
@@ -8,10 +8,29 @@ const App = (props) => {
   // state.price => priceとするには？
   const {name, price} = state
 
+  // useEffect(関数,
+  // useEffect(() => {f}, )
+  // componentDidUpdateと同じようなもの
+  useEffect(() => {
+    console.log('componentDidUpdate')
+  })
+
+  // componentDidMount -> 第2引数に[]を追加
+  useEffect(() => {
+    console.log('componentDidMount')
+  }, [])
+
+
+  const renderPeriod = () => {
+    console.log('render period')
+    return 'Called renderPeriod'
+  }
+
 
   return (
     <div>
       <h1>Multiple State</h1>
+      {renderPeriod()}
       <p>Name: {name}</p>
       <p>Price: {price}</p>
       <button onClick={() => setState({...state, price: price + 1})}>+1</button>
