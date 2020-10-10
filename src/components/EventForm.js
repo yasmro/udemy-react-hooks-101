@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions'
+
 const EventForm = ({state, dispatch}) =>{
     // EventForm.js
     // App.jsに存在するstateインスタンスとeventformのstateインスタンスが違うオブジェクトになっている
@@ -15,7 +17,7 @@ const EventForm = ({state, dispatch}) =>{
         // dispatch(action)
         // action = { type:'CREATE_EVENT', eventの中身(title: title, body: body)をformから取得, usestateを使う}
         dispatch({
-        type: 'CREATE_EVENT',
+        type: CREATE_EVENT,
         title,
         body,
         })
@@ -32,7 +34,7 @@ const EventForm = ({state, dispatch}) =>{
         const result = window.confirm('Are you sure to delete all events?')
         if(result){
         dispatch({
-            type: 'DELETE_ALL_EVENTS'
+            type: DELETE_ALL_EVENTS
         })
         }
     }
