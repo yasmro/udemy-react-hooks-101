@@ -14,11 +14,12 @@ const App = () => {
 
   return (
     <>
-      <AppContext.Provider value={'Hello, this is provider.'}>
+      {/*childコンポーネントに渡すべきprop = stateとdispatchをわたす*/}
+      <AppContext.Provider value={{state, dispatch}}>
         <div className="container-fluid">
           <h1>Hello</h1>
-          <EventForm state={state} dispatch={dispatch} />
-          <Events state={state} dispatch={dispatch} />
+          <EventForm  />
+          <Events  />
           
         </div>
       </AppContext.Provider>

@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions'
 
-const EventForm = ({state, dispatch}) =>{
+import AppContext from '../contexts/AppContext'
+
+const EventForm = () =>{
     // EventForm.js
     // App.jsに存在するstateインスタンスとeventformのstateインスタンスが違うオブジェクトになっている
     // -> eventformで追加しても，Appのstateには追加されず，表示されない
     // 対応策としてApp.jsにて　<EventForm state={state} dispatch={dispatch} />を行い，stateとdispatchをわたす！
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
+
+    const { state, dispatch } = useContext(AppContext)
 
     const addEvent = (e) => {
         e.preventDefault();
