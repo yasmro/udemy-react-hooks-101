@@ -29,6 +29,16 @@ const App = () => {
     
   }
 
+  const deleteAllEvents = (e) => {
+    e.preventDefault()
+    
+    dispatch({
+      type: 'DELETE_ALL_EVENTS'
+    })
+    setTitle('')
+    setBody('')
+  }
+
   return (
     <div className="container-fluid">
       <h1>Hello</h1>
@@ -43,7 +53,7 @@ const App = () => {
           <textarea className="form-control" id="formEventBody" placeholder="Body" value={body} onChange={e => setBody(e.target.value)} />
         </div>
         <button type="submit" className="btn btn-primary" onClick={addEvent}>Submit</button>
-        <button type="submit" className="btn btn-danger">Delete All Events</button>
+        <button type="submit" className="btn btn-danger" onClick={deleteAllEvents}>Delete All Events</button>
       </form>
 
       <h4>Events Table</h4>
