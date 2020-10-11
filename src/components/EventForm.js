@@ -57,6 +57,16 @@ const EventForm = () =>{
         }
     }
 
+    const deleteAllOperationLogs = (e) => {
+        e.preventDefault()
+        const result = window.confirm('Are you sure to delete all logs?')
+        if(result){
+            dispatch({
+                type: DELETE_ALL_OPERATION_LOGS
+            })
+        }
+    } 
+
     const uncreatable = (title === '' || body === '')
 
     return(
@@ -73,6 +83,7 @@ const EventForm = () =>{
             </div>
             <button type="submit" className="btn btn-primary" onClick={addEvent} disabled={uncreatable}>Submit</button>
             <button type="submit" className="btn btn-danger" onClick={deleteAllEvents} disabled={state.events.length === 0}>Delete All Events</button>
+            <button type="submit" className="btn btn-danger" onClick={deleteAllOperationLogs} disabled={state.operationLogs.length === 0}>Delete All Logs</button>
         </form>
         </>
 
