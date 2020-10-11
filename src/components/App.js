@@ -9,7 +9,10 @@ import EventForm from './EventForm'
 import Events from './Events'
 
 const App = () => {
-  const initialState = [];
+  // {events: [], logs:[]}
+  const initialState = {
+    events: []
+  };
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

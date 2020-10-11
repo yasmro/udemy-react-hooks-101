@@ -58,7 +58,7 @@ const EventForm = () =>{
             <textarea className="form-control" id="formEventBody" placeholder="Body" value={body} onChange={e => setBody(e.target.value)} />
             </div>
             <button type="submit" className="btn btn-primary" onClick={addEvent} disabled={uncreatable}>Submit</button>
-            <button type="submit" className="btn btn-danger" onClick={deleteAllEvents} disabled={state.length === 0}>Delete All Events</button>
+            <button type="submit" className="btn btn-danger" onClick={deleteAllEvents} disabled={state.events.length === 0}>Delete All Events</button>
         </form>
         </>
 
