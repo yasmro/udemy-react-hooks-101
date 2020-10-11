@@ -1,8 +1,10 @@
 import React, { useState, useContext } from 'react'
 
-import { CREATE_EVENT, DELETE_ALL_EVENTS } from '../actions'
+import { CREATE_EVENT, DELETE_ALL_EVENTS, ADD_OPERATION_LOG, DELETE_ALL_OPERATION_LOGS } from '../actions'
 
 import AppContext from '../contexts/AppContext'
+
+import { timeCurrentIso8601 } from '../utils'
 
 const EventForm = () =>{
     // EventForm.js
@@ -21,11 +23,17 @@ const EventForm = () =>{
         // dispatch(action)
         // action = { type:'CREATE_EVENT', eventの中身(title: title, body: body)をformから取得, usestateを使う}
         dispatch({
-        type: CREATE_EVENT,
-        title,
-        body,
+            type: CREATE_EVENT,
+            title,
+            body,
         })
 
+        dispatch({
+            type: ADD_OPERATION_LOG,
+            description: `Created Event: ${title}`,
+            operatedAt: timeCurrentIso8601()
+        })
+        
         console.log({state})
         setTitle('')
         setBody('')
@@ -37,9 +45,15 @@ const EventForm = () =>{
         
         const result = window.confirm('Are you sure to delete all events?')
         if(result){
-        dispatch({
-            type: DELETE_ALL_EVENTS
-        })
+            dispatch({
+                type: DELETE_ALL_EVENTS
+            })
+
+            dispatch({
+                type: ADD_OPERATION_LOG,
+                description: `Deleted All Events`,
+                operatedAt: timeCurrentIso8601()
+            })
         }
     }
 
