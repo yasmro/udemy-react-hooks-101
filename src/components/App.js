@@ -7,6 +7,7 @@ import AppContext from '../contexts/AppContext'
 
 import EventForm from './EventForm'
 import Events from './Events'
+import OperationLogs from './OperationLogs'
 
 const App = () => {
   // {events: [], logs:[]}
@@ -24,7 +25,7 @@ const App = () => {
           <h1>Hello</h1>
           <EventForm  />
           <Events  />
-          
+          <OperationLogs  />
         </div>
       </AppContext.Provider>
     </>
